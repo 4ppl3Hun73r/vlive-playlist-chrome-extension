@@ -1,0 +1,27 @@
+{
+    "name": "V Playlist",
+    "version": "0.1",
+    "description": "V Playlist",
+    "background": {
+      "page": "./html/background.html",
+      "persistent": true
+    },
+    "content_scripts": [{
+      "js": ["./js/content.js", "./js/common.js", "./js/playlistLayer.js"],
+      "css": ["./css/playlistLayer.css"],
+      "matches": ["https://*.vlive.tv/video/*"]
+    }],
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "browser_action": {
+      "default_title": "V Playlist and pip",
+      "default_popup": "./html/popup.html"
+    },
+    "permissions": [
+      "tabs", "activeTab", "http://*.vlive.tv/*", "storage", "cookies"
+    ],
+    "manifest_version": 2
+  }
