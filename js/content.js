@@ -59,23 +59,26 @@ chrome.storage.sync.get(null, (result) => {
 });
 
 chrome.storage.onChanged.addListener((changes, areaName) => {
-    alert(changes);
+    // alert(changes);
     console.log(changes);
 });
 
+//_playlist.addPlaylist('default');
+// saveVideo('stay');
+
 /* storage data struct
 {
-    'playlist': [
-        {
-            'name' : 'default',
+    'playlist': {
+        'default' : {  // map 형태로 변경
             'videoList' : [{
                 videSeq: 12345,
                 title: 'title',
                 startAt: '', // null is 00
                 endat: '' // null is end
+                thumbnail: '' // thumbnail 필요한가?
             }]
         }
-    ],
+    },
     'lastplayInfo': {
         'playlist': 'defualt',
         'index': 0

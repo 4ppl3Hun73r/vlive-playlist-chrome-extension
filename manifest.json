@@ -7,8 +7,8 @@
       "persistent": true
     },
     "content_scripts": [{
-      "js": ["./js/content.js", "./js/common.js", "./js/playlistLayer.js"],
-      "css": ["./css/playlistLayer.css", "./css/common.css"],
+      "js": ["./js/common.js", "./js/content.js", "./js/playlistLayer.js"],
+      "css": ["./css/common.css"],
       "matches": ["https://*.vlive.tv/video/*"]
     }],
     "web_accessible_resources": ["img/*.png", "css/*.css"],

@@ -20,6 +20,82 @@ const fnTogglePipMode = function() {
     }
 }
 
+const _playlist = {
+    getPlaylist: function (callback) {
+        chrome.storage.sync.get(['playlist'], callback);
+    }, 
+    setPlaylist: function (playlist, callback) {
+        chrome.storage.sync.set({'playlist': playlist}, callback);
+    },
+    /**
+     * playlistName에 현재 페이지 video 정보 저장
+     * @param {string} playlistName 
+     */
+    addPlaylist: function(playlistName) {
+        const videoSeq = fnGetVideoSeq();
+        const title = document.querySelectorAll('meta[property="og:title"]')[0].content;
+        const startAt = null;
+        const endAt = null;
+        const thumbnail = document.querySelectorAll('meta[property="og:image"]')[0].content;
+    
+        const newVideoInfo = {
+            videoSeq, title, startAt, endAt, thumbnail
+        };
+    
+        _playlist.getPlaylist(function(oResult) {
+            let playlist = oResult.playlist;
+            if (!playlist) {
+                playlist = {};
+            }
+            let list = playlist[playlistName];
+            if (!list) {
+                list = {
+                    'videoList': []
+                };
+                playlist[playlistName] = list;
+            }
+            let videoList = list.videoList;
+            let exists = false;
+            for (let i = 0; i < videoList.length; i++) {
+                let videoInfo = videoList[i];
+                if (videoInfo.videoSeq === videoSeq) {
+                    videoList[i] = newVideoInfo;
+                    exists = true;
+                }
+            }
+            if (!exists) {
+                videoList.push(newVideoInfo);
+            }
+    
+            _playlist.setPlaylist(playlist, null);
+        });
+    },
+    removePlaylist: function(playlistName) {
+        const videoSeq = fnGetVideoSeq();
+    
+        _playlist.getPlaylist(function(oResult) {
+            let playlist = oResult.playlist;
+            let list = playlist[playlistName];
+            let videoList = list.videoList;
+            for (let i = 0; i < videoList.length; i++) {
+                let videoInfo = videoList[i];
+                if (videoInfo.videoSeq === videoSeq) {
+                    videoList.splice(i, 1);
+                    break;
+                }
+            }
+    
+            _playlist.setPlaylist(playlist, null);
+        });
+    }
+};
+
+const videoSeqRegx = /.*(\/video\/)([0-9].*).*/;
+const fnGetVideoSeq = function () {
+    const url = document.querySelectorAll('meta[property="og:url"]')[0].content;
+    return videoSeqRegx.exec(url)[2];
+}
+
 const fnGetPlayList = function(fnCallback) {
     chrome.storage.sync.get(null, (result) => {
         fnCallback(result.playlist);

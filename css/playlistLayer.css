@@ -54,3 +54,10 @@
     -webkit-font-smoothing:antialiased;
 }
 
+input.v-ex-playlist-checkbox {
+    width: 1em;
+    height: 1em;
+    position: initial;
+    -webkit-appearance: checkbox;
+    opacity: unset;
+}
