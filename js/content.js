@@ -63,6 +63,32 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
     console.log(changes);
 });
 
+// event attach
+var s = document.createElement('script');
+s.src = chrome.extension.getURL('js/page.js');
+(document.head || document.documentElement).appendChild(s);
+
+setTimeout(() => {
+    let event = new CustomEvent('ADD_EVENT');
+    window.dispatchEvent(event);
+}, 500);
+
+window.addEventListener('PLAY_END', (event) => {
+    console.log(event);
+    chrome.runtime.sendMessage({
+        msg: "playend"
+    });
+}, false);
+
+// 현재 playlist가 플래이 중인지 확인하고 플레이 중이면 아이콘을 변경해야 한다.
+// playlist play 여부는 background에 데이터를 넣는걸로 체크하면 될듯 하다.
+// 현재 화면이 close 될때 background 데이터도 같이 없애는 걸로 하면 되지 않을까?
+
+// lastplayInfo
+
+
+// chrome.runtime.sendMessage({ msg: "change_icon"});
+
 //_playlist.addPlaylist('default');
 // saveVideo('stay');
 

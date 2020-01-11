@@ -9,9 +9,10 @@
     "content_scripts": [{
       "js": ["./js/common.js", "./js/content.js", "./js/playlistLayer.js"],
       "css": ["./css/common.css"],
-      "matches": ["https://*.vlive.tv/video/*"]
+      "matches": ["https://*.vlive.tv/video/*"],
+      "run_at": "document_end"
     }],
-    "web_accessible_resources": ["img/*.png", "css/*.css"],
+    "web_accessible_resources": ["img/*.png", "css/*.css", "js/page.js"],
     "icons": {
       "16": "icon16.png",
       "48": "icon48.png",

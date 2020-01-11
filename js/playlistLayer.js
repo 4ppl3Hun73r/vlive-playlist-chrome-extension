@@ -7,7 +7,6 @@ const fnOnClickPlaylistLayer = function(e) {
         const playlistName = targetElement.getAttribute('data-name');
         const bChecked = targetElement.checked;
         
-        console.log(playlistName, bChecked);
         if (bChecked) {
             _playlist.addPlaylist(playlistName);
         } else {

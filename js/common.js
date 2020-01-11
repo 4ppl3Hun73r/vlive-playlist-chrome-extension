@@ -23,9 +23,39 @@ const fnTogglePipMode = function() {
 const _playlist = {
     getPlaylist: function (callback) {
         chrome.storage.sync.get(['playlist'], callback);
+    },
+    getPlaylistVideo: function (playlistName, callback) {
+        chrome.storage.sync.get(['playlist'], (oResult) => {
+            let playlist = oResult.playlist;
+            if (!playlist) {
+                playlist = {};
+            }
+            let list = playlist[playlistName];
+            if (!list) {
+                list = {
+                    'videoList': []
+                };
+                playlist[playlistName] = list;
+            }
+            if (typeof callback === 'function') {
+                callback.apply(null, [list.videoList]);
+            }
+        });
     }, 
     setPlaylist: function (playlist, callback) {
         chrome.storage.sync.set({'playlist': playlist}, callback);
+    },
+    getLastPlayInfo: function (callback) {
+    /*
+        'lastplayInfo': {
+            'playlist': 'defualt',
+            'index': 0
+        }
+    */
+        chrome.storage.sync.get(['lastplayInfo'], callback);
+    },
+    setLastPlayInfo: function (oLastPlayInfo, callback) {
+        chrome.storage.sync.set({'lastplayInfo': oLastPlayInfo}, callback);
     },
     /**
      * playlistName에 현재 페이지 video 정보 저장
