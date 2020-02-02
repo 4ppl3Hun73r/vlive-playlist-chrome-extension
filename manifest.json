@@ -23,7 +23,7 @@
       "default_popup": "./html/popup.html"
     },
     "permissions": [
-      "tabs", "activeTab", "http://*.vlive.tv/*", "storage", "cookies"
+      "tabs", "activeTab", "http://*.vlive.tv/*", "storage", "cookies", "background"
     ],
     "manifest_version": 2
   }
