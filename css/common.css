@@ -1,0 +1,21 @@
+.v-ex-pip-btn {
+    background-image: url("chrome-extension://__MSG_@@extension_id__/img/sp_icon.png") !important; 
+    background-position-x: 0px !important;
+    background-position-y: 0px !important;
+}
+
+.v-ex-pip-btn:hover {
+    background-position-x: -52px !important;
+    background-position-y: 0px !important;
+}
+
+.v-ex-list-btn {
+    background-image: url("chrome-extension://__MSG_@@extension_id__/img/sp_icon.png") !important; 
+    background-position-x: 0px !important;
+    background-position-y: -52px !important;
+}
+
+.v-ex-list-btn:hover {
+    background-position-x: -52px !important;
+    background-position-y: -52px !important;
+}

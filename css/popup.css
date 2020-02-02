@@ -1,0 +1,103 @@
+.wrapper {
+    width: 300px;
+    height: 200px;
+}
+
+.bg-image {
+    background-image:url(https://ssl.pstatic.net/static/m/vlive/pc/2019/10/15/sp_common.png);
+    background-position-x:-74px;
+    background-position-y:-127px;
+    color:rgb(85, 26, 139);
+    cursor:pointer;
+    display:inline-block;
+    height:33px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    text-decoration-color:rgb(0, 0, 238);
+    text-decoration-line:none;
+    text-decoration-style:solid;
+    vertical-align:top;
+    width:98px;
+}
+
+.center {
+    text-align: center;
+}
+
+input {
+    background-color:rgb(255, 255, 255);
+    background-image:none;
+    color:rgb(103, 106, 108);
+    cursor:text;
+    margin-bottom:0px;
+    margin-left:0px;
+    margin-right:0px;
+    margin-top:0px;
+    padding-bottom:6px;
+    padding-left:12px;
+    padding-right:12px;
+    padding-top:6px;
+    text-align:start;
+    text-indent:0px;
+    text-rendering:auto;
+    text-shadow:none;
+    text-size-adjust:100%;
+    text-transform:none;
+    transition-delay:0s, 0s;
+    transition-duration:0.15s, 0.15s;
+    transition-property:border-color, box-shadow;
+    transition-timing-function:ease-in-out, ease-in-out;
+    width:200px;
+    word-spacing:0px;
+}
+
+button {
+    background-color:rgb(35, 198, 200);
+    background-image:none;
+    border-bottom-color:rgb(35, 198, 200);
+    border-bottom-left-radius:3px;
+    border-bottom-right-radius:3px;
+    border-bottom-style:solid;
+    border-bottom-width:1px;
+    border-image-outset:0px;
+    border-image-repeat:stretch;
+    border-image-slice:100%;
+    border-image-source:none;
+    border-image-width:1;
+    border-left-color:rgb(35, 198, 200);
+    border-left-style:solid;
+    border-left-width:1px;
+    border-right-color:rgb(35, 198, 200);
+    border-right-style:solid;
+    border-right-width:1px;
+    border-top-color:rgb(35, 198, 200);
+    border-top-left-radius:3px;
+    border-top-right-radius:3px;
+    border-top-style:solid;
+    border-top-width:1px;
+    box-sizing:border-box;
+    color:rgb(255, 255, 255);
+    cursor:pointer;
+    display:inline-block;
+    font-family:Dotum, 돋움, Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:14px;
+    font-weight:400;
+    height:34px;
+    line-height:20px;
+    margin-bottom:5px;
+    padding-bottom:6px;
+    padding-left:12px;
+    padding-right:12px;
+    padding-top:6px;
+    text-align:center;
+    text-decoration-color:rgb(255, 255, 255);
+    text-decoration-line:none;
+    text-decoration-style:solid;
+    text-size-adjust:100%;
+    touch-action:manipulation;
+    user-select:none;
+    vertical-align:middle;
+    white-space:nowrap;
+    width:200px;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+}
