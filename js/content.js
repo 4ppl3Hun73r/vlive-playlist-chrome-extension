@@ -80,6 +80,72 @@ window.addEventListener('PLAY_END', (event) => {
     });
 }, false);
 
+// cont_section 영역에 playlist 정보로 목록 표시하기
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log(request);
+    if (request.msg === 'contentPlaylistInfoCallback') {
+        const elCont = document.querySelector('.cont_section');
+        console.log(request.oVExInfo);
+            let videoArea = `
+            <div class="video_area suggest">
+                <h3 class="tit">플레이 리스트</h3>
+                <div class="inner">
+                    <ul class="video_list _extension_playlist">`;
+            const videoList = request.oVExInfo.videoList;
+            videoList.forEach(video => {
+                videoArea += `
+                <li class="video_list_cont _suggest_page_1" style="display: inline-block;">
+                    <a href="/video/${video.videoSeq}" class="thumb_area" title="${video.title}">
+                        <div class="icon_box">	
+                        </div>
+                        <img class="" width="228" height="128" alt="" src="${video.thumbnail}?type=f228_128">
+                        <span class="thumb_border"></span>
+                    </a>
+                    <a href="/video/${video.videoSeq}" class="video_tit" title="${video.title}">${video.title}</a>
+                </li>
+                `;
+            });
+            videoArea += `</ul>
+                </div>
+            </div>`;
+        
+            elCont.innerHTML = videoArea + elCont.innerHTML;
+    }
+});
+chrome.runtime.sendMessage({msg: "getCurrentPlaylistInfo"}, (response) => {
+    console.log(response);
+    const elCont = document.querySelector('.cont_section');
+    console.log(response.oVExInfo);
+    let videoSeq = fnGetVideoSeq();
+    let videoArea = `
+    <div class="video_area suggest">
+        <h3 class="tit">${response.oVExInfo.playlistName}</h3>
+        <div class="inner">
+            <ul class="video_list _extension_playlist">`;
+    const videoList = response.oVExInfo.videoList;
+    videoList.forEach(video => {
+        const isOnAir = videoSeq === video.videoSeq;
+        videoArea += `
+        <li class="video_list_cont ${isOnAir ? 'onair' : ''} _suggest_page_1" style="display: inline-block;">
+            <a href="/video/${video.videoSeq}" class="thumb_area" title="${video.title}">
+                <div class="icon_box">	
+                </div>
+                <img class="" width="228" height="128" alt="" src="${video.thumbnail}?type=f228_128">
+                <span class="thumb_border"></span>
+            </a>
+            <a href="/video/${video.videoSeq}" class="video_tit" title="${video.title}">${video.title}</a>
+        </li>
+        `;
+    });
+    videoArea += `</ul>
+        </div>
+    </div>`;
+
+    elCont.innerHTML = videoArea + elCont.innerHTML;
+});
+
+
+
 // 현재 playlist가 플래이 중인지 확인하고 플레이 중이면 아이콘을 변경해야 한다.
 // playlist play 여부는 background에 데이터를 넣는걸로 체크하면 될듯 하다.
 // 현재 화면이 close 될때 background 데이터도 같이 없애는 걸로 하면 되지 않을까?

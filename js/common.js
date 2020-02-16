@@ -66,7 +66,7 @@ const _playlist = {
         const title = document.querySelector('#content > div.vlive_section > div > div.vlive_cont > div.vlive_area > div.vlive_info > strong').innerText;
         const startAt = null;
         const endAt = null;
-        const thumbnail = document.querySelectorAll('meta[property="og:image"]')[0].content;
+        const thumbnail = document.querySelectorAll('meta[property="og:image"]')[0].content.split('?')[0];
     
         const newVideoInfo = {
             videoSeq, title, startAt, endAt, thumbnail

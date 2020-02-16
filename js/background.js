@@ -74,6 +74,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             }
         }
     }
+    if (request.msg === 'getCurrentPlaylistInfo') {
+        if (sender.tab.id === oVExInfo.tabId) {
+            sendResponse({
+                msg: request.callbackMsgKey,
+                oVExInfo: oVExInfo
+            });
+        };
+    }
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
